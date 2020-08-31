@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProAgil.API.Data;
 using ProAgil.API.Model;
 
@@ -17,15 +20,33 @@ namespace ProAgil.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Evento>> Get()
+        public async Task<IActionResult> Get()
         {
-            return _context.Eventos.ToList();
+            try
+            {
+                var resultado = await _context.Eventos.ToListAsync();
+
+                return Ok(resultado);
+            }
+            catch (System.Exception)
+            {                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Sem resposta do Banco de Dados.");
+            }            
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Evento> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return _context.Eventos.FirstOrDefault(resultado => resultado.EventoId == id);
+               try
+            {
+                var resultado = await _context.Eventos.FirstOrDefaultAsync(resultado => resultado.EventoId == id);
+
+                return Ok(resultado);
+            }
+            catch (System.Exception)
+            {                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Sem resposta do Banco de Dados.");
+            }            
         }
     }
 }
