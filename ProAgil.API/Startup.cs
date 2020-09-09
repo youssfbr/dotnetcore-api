@@ -31,7 +31,9 @@ namespace ProAgil.API
                     options.UseMySql(Configuration.GetConnectionString("Connection"), builder =>
                     builder.MigrationsAssembly("ProAgil.API")));
 
-            services.AddControllers();
+            services.AddCors();
+
+            services.AddControllers();      
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,11 +43,13 @@ namespace ProAgil.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             // app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
