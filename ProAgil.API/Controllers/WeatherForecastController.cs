@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProAgil.API.Model;
+using ProAgil.Domain;
 
 namespace ProAgil.API.Controllers
 {
@@ -29,20 +29,20 @@ namespace ProAgil.API.Controllers
         {
             return new Evento[] {
                 new Evento() {
-                    EventoId = 1,
+                    Id = 1,
                     Tema = "Angular e .NET Core",
                     Local = "Fortaleza",
-                    Lote = "1o lote",
+                    // Lote = "1o lote",
                     QtdPessoas = 250,
-                    DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy")
+                    //DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy")
                 },
                 new Evento() {
-                    EventoId = 2,
+                    Id = 2,
                     Tema = "Angular 10",
                     Local = "Caucaia",
-                    Lote = "2o lote",
+                    // Lote = "2o lote",
                     QtdPessoas = 350,
-                    DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy")
+                    // DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy")
                 }
 
             };
@@ -66,23 +66,23 @@ namespace ProAgil.API.Controllers
             return new Evento[] 
             {
                 new Evento() {
-                    EventoId = 1,
+                    Id = 1,
                     Tema = "Angular e .NET Core",
                     Local = "Fortaleza",
-                    Lote = "1o lote",
+                    // Lote = "1o lote",
                     QtdPessoas = 250,
-                    DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy")
+                    // DataEvento = DateTime.Now.AddDays(2).ToString("dd/MM/yyyy")
                 },
                 new Evento() {
-                    EventoId = 2,
+                    Id = 2,
                     Tema = "Angular 10",
                     Local = "Caucaia",
-                    Lote = "2o lote",
+                    // Lote = "2o lote",
                     QtdPessoas = 350,
-                    DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy")
+                    // DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy")
                 }
 
-            }.FirstOrDefault(x => x.EventoId == id);
+            }.FirstOrDefault(x => x.Id == id);
 
         }
     }
